@@ -41,10 +41,41 @@ export class tarkovApiService {
           updated
           width
           height
+          weight
           backgroundColor
           gridImageLink
           baseImageLink
           inspectImageLink
+          hasGrid
+          wikiLink
+          types
+          handbookCategories{
+            id
+            name
+            normalizedName
+            parent{
+              id  
+            }
+            children{
+              id
+            }
+          }
+          categories{
+            id
+            name
+            normalizedName
+            parent{
+              id  
+            }
+            children{
+              id
+            }
+          }
+          historicalPrices{
+            price
+            priceMin
+            timestamp
+          }
         }
       }
     `;
@@ -85,6 +116,25 @@ export class tarkovApiService {
       `;
 
     return request<HideoutItem>(this.BASE_URL, query)
+      .then((data) => data)
+      .catch((error) => {
+        throw new Error(`Error fetching items: ${error.message}`);
+      });
+  }
+
+  getEnumValues(enumName: string) {
+    const query = gql`
+      {
+        __type(name: "${enumName}") {
+          name
+          enumValues {
+            name
+          }
+        }
+      }
+    `;
+
+    return request(this.BASE_URL, query)
       .then((data) => data)
       .catch((error) => {
         throw new Error(`Error fetching items: ${error.message}`);
