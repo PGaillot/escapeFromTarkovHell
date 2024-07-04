@@ -5,13 +5,13 @@ import { HideoutPageComponent } from './pages/hideout-page/hideout-page.componen
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ItemDetailsComponent } from './pages/item-details/item-details.component';
 
 export const routes: Routes = [
-
   {
     path: '',
-    redirectTo : '/hideout',
-    pathMatch : 'full'
+    redirectTo: '/hideout',
+    pathMatch: 'full',
   },
   {
     path: 'hideout',
@@ -34,5 +34,9 @@ export const routes: Routes = [
   {
     path: 'station-details',
     component: StationDetailPageComponent,
+  },
+  {
+    path: 'item-details/:tarkovId',
+    component: ItemDetailsComponent,
   },
 ];
